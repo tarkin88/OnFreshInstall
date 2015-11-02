@@ -510,23 +510,11 @@
         esac
         if ! is_package_installed "${PKG}" ; then
           ncecho " ${BBlue}[${Reset}${Bold}X${BBlue}]${Reset} Installing (${_pkg_repo}) ${Bold}${PKG}${Reset} "
-          if is_package_installed "powerpill" ; then
-            powerpill -S --noconfirm --needed ${PKG} >>"$LOG" 2>&1 &
-            pid=$!;progress $pid
-          else
-            pacman -S --noconfirm --needed ${PKG} >>"$LOG" 2>&1 &
-            pid=$!;progress $pid
-          fi
-        else
-          cecho " ${BBlue}[${Reset}${Bold}X${BBlue}]${Reset} Installing (${_pkg_repo}) ${Bold}${PKG}${Reset} exists "
-        fi
+          pacman -S --noconfirm --needed ${PKG} >>"$LOG" 2>&1 &
+          pid=$!;progress $pid
       done
     else
-      if is_package_installed "powerpill" ; then
-        powerpill -S --needed ${1}
-      else  
         pacman -S --needed ${1}
-      fi
     fi
   } #}}}
   package_remove() { #{{{
