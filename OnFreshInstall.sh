@@ -21,7 +21,7 @@ check_pacman_blocked
 
 echo "Do you want to add powerpill repo?"
 read -p "Press y for accept" OPTION_XYNE
-if [[$OPTION_XYNE -eq y]]; then
+if [[ $OPTION_XYNE -eq y ]]; then
 
 	echo "Adding Xyne Repo (For Powerpill)"
 
@@ -52,7 +52,7 @@ cp dotfiles/.bashrc dotfiles/.dircolors dotfiles/.dircolors_256 dotfiles/.nanorc
 rm -fr dotfiles
 echo "Do you want to Reconfigure the system?"
 read -p "Press y for accept" OPTION_RECONF
-if [[$OPTION_RECONF -eq y]]; then
+if [[ $OPTION_RECONF -eq y ]]; then
 	reconfigure_system
 fi
 chown -R ${username}:users /home/${username}
