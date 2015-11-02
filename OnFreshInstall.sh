@@ -46,7 +46,7 @@ if [[ $OPTION_RECONF == y ]]; then
 	reconfigure_system
 fi
 chown -R ${username}:users /home/${username}
-
+print_title "Installing all packages for a awesome Openbox"
 package_install "bc rsync mlocate bash-completion pkgstats ntp"
 is_package_installed "ntp" && ntpd -u ntp:ntp
 package_install "zip unzip unrar p7zip lzop cpio"
