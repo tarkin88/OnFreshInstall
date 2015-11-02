@@ -531,12 +531,8 @@
       fi
     done
   } #}}}
-  system_update() { #{{{
-    if is_package_installed "powerpill" ; then
-      powerpill -Syyu
-    else
+  system_update() {
     pacman -Syyu
-  fi
   } #}}}
   npm_install() { #{{{
     #install packages using pacman
