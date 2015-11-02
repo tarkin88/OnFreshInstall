@@ -18,6 +18,11 @@ check_root
 check_connection
 
 check_pacman_blocked
+replace_line '#Color Color' /etc/pacman.conf
+replace_line '#TotalDownload TotalDownload' /etc/pacman.conf
+replace_line '#VerbosePkgLists VerbosePkgLists' /etc/pacman.conf
+add_line "ILoveCandy" "/etc/pacman.conf"
+
 
 echo "Do you want to add powerpill repo?"
 read -p "Press y for accept [y/n] " OPTION_XYNE
@@ -34,11 +39,6 @@ system_update
 print_info "Let's start!"
 print_line
 package_install "git base-devel ccache"
-
- replace_line '#Color Color' /etc/pacman.conf
- replace_line '#TotalDownload TotalDownload' /etc/pacman.conf
- replace_line '#VerbosePkgLists VerbosePkgLists' /etc/pacman.conf
- add_line "ILoveCandy" "/etc/pacman.conf"
 
 select_user
 git clone https://github.com/helmuthdu/dotfiles
