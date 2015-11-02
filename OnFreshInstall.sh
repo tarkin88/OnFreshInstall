@@ -20,14 +20,14 @@ check_connection
 check_pacman_blocked
 
 echo "Do you want to add powerpill repo?"
-read -p "Press y for accept\n" OPTION_XYNE
-if [[ $OPTION_XYNE -eq y ]]; then
+read -p "Press y for accept [y/n] " OPTION_XYNE
+if [[ $OPTION_XYNE == y ]]; then
 
-	echo "Adding Xyne Repo (For Powerpill)"
+	print_info "Adding Xyne Repo (For Powerpill)"
 
-	add_line  "[xyne-$ARCHI]" "/etc/pacman.conf"
-	add_line  "SigLevel = Required" "/etc/pacman.conf"
-	add_line  "Server = http://xyne.archlinux.ca/repos/xyne" "/etc/pacman.conf"
+	echo  "[xyne-$ARCHI]" >> /etc/pacman.conf
+	echo  "SigLevel = Required" >> /etc/pacman.conf
+	echo  "Server = http://xyne.archlinux.ca/repos/xyne" >> /etc/pacman.conf
 	
 	system_update
 
@@ -49,8 +49,8 @@ cp dotfiles/.bashrc dotfiles/.dircolors dotfiles/.dircolors_256 dotfiles/.nanorc
 cp dotfiles/.bashrc dotfiles/.dircolors dotfiles/.dircolors_256 dotfiles/.nanorc dotfiles/.yaourtrc /home/${username}/
 rm -fr dotfiles
 echo "Do you want to Reconfigure the system?"
-read -p "Press y for accept" OPTION_RECONF
-if [[ $OPTION_RECONF -eq y ]]; then
+read -p "Press y for accept [y/n]"  OPTION_RECONF
+if [[ $OPTION_RECONF == y ]]; then
 	reconfigure_system
 fi
 chown -R ${username}:users /home/${username}
