@@ -28,9 +28,6 @@ if [[ $OPTION_XYNE == y ]]; then
 	echo  "[xyne-$ARCHI]" >> /etc/pacman.conf
 	echo  "SigLevel = Required" >> /etc/pacman.conf
 	echo  "Server = http://xyne.archlinux.ca/repos/xyne" >> /etc/pacman.conf
-	
-	system_update
-
 	package_install "powerpill"
 fi
 system_update
