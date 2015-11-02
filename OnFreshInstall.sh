@@ -24,7 +24,7 @@ read -p "Press y for accept [y/n] " OPTION_XYNE
 if [[ $OPTION_XYNE == y ]]; then
 
 	print_info "Adding Xyne Repo (For Powerpill)"
-
+	echo  "" >> /etc/pacman.conf
 	echo  "[xyne-$ARCHI]" >> /etc/pacman.conf
 	echo  "SigLevel = Required" >> /etc/pacman.conf
 	echo  "Server = http://xyne.archlinux.ca/repos/xyne" >> /etc/pacman.conf
