@@ -391,7 +391,8 @@
       package_install "haveged"
       haveged -w 1024
       pacman-key --init
-      pacman-key --populate archlinux
+      pacman-key --populate archlinux 
+      pacman-key --populate manjaro 
       pkill haveged
       package_remove "haveged"
     fi
@@ -534,7 +535,11 @@
     done
   } #}}}
   system_update() { #{{{
-    pacman -Syy
+    if is_package_installed "powerpill" ; then
+      powerpill -Syyu
+    else
+    pacman -Syyu
+  fi
   } #}}}
   npm_install() { #{{{
     #install packages using pacman
