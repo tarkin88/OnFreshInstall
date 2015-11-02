@@ -20,24 +20,22 @@ check_connection
 check_pacman_blocked
 
 echo "Do you want to add powerpill repo?"
-read -p "Press y for accept" OPTION_XYNE
+read -p "Press y for accept\n" OPTION_XYNE
 if [[ $OPTION_XYNE -eq y ]]; then
 
 	echo "Adding Xyne Repo (For Powerpill)"
 
-	add_line  "\n[xyne-$ARCHI]
- 	#A repo for Xyne's own projects: http://xyne.archlinux.ca/projects/
- 	#Packages for the "$ARCHI" architecture.
- 	#Note that this includes all packages in [xyne-any].
-	SigLevel = Required
-	Server = http://xyne.archlinux.ca/repos/xyne" >> /etc/pacman.conf
+	add_line  "[xyne-$ARCHI]" "/etc/pacman.conf"
+	add_line  "SigLevel = Required" "/etc/pacman.conf"
+	add_line  "Server = http://xyne.archlinux.ca/repos/xyne" "/etc/pacman.conf"
 	
 	system_update
 
 	package_install "powerpill"
 fi
 system_update
-
+print_info "Let's start!"
+print_line
 package_install "git base-devel ccache"
 
  replace_line '#Color Color' /etc/pacman.conf
