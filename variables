@@ -86,7 +86,7 @@
   XPINGS=0 # CONNECTION CHECK
   SPIN="/-\|" #SPINNER POSITION
   AUTOMATIC_MODE=0
-  TRIM=0$OPTION_XYNE -eq y
+  TRIM=0
 #}}}
 #COMMON FUNCTIONS {{{
   error_msg() { #{{{
@@ -107,7 +107,8 @@
   spinny() { #{{{
     echo -ne "\b${SPIN:i++%${#SPIN}:1}"
   } #}}}
-  progress() { #{{{
+  progress() { 
+  #{{{
     ncecho "  ";
     while true; do
       kill -0 $pid &> /dev/null;
@@ -512,9 +513,12 @@
           ncecho " ${BBlue}[${Reset}${Bold}X${BBlue}]${Reset} Installing (${_pkg_repo}) ${Bold}${PKG}${Reset} "
           pacman -S --noconfirm --needed ${PKG} >>"$LOG" 2>&1 &
           pid=$!;progress $pid
+        else
+          cecho " ${BBlue}[${Reset}${Bold}X${BBlue}]${Reset} Installing (${_pkg_repo}) ${Bold}${PKG}${Reset} exists "
+        fi
       done
     else
-        pacman -S --needed ${1}
+      pacman -S --needed ${1}
     fi
   } #}}}
   package_remove() { #{{{
@@ -531,7 +535,7 @@
       fi
     done
   } #}}}
-  system_update() {
+  system_update() { #{{{
     pacman -Syyu
   } #}}}
   npm_install() { #{{{
