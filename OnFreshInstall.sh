@@ -103,9 +103,10 @@ add_line  "(sleep 3s && volumeicon)" "/home/${username}/.config/openbox/autostar
 touch /home/${username}/.xinitrc
 echo "exec dbus-launch openbox-session" > /home/${username}/.xinitrc
 aur_package_install "sublime-text-dev chromium-pepper-flash"
-aur_package_install "qbittorrent ttf-monaco"
+aur_package_install "qbittorrent ttf-monaco oblogout-fork-git i3lock-color-git i3lock-wrapper"
 is_package_installed "fontconfig" && pacman -Rdds freetype2 fontconfig cairo
 aur_package_install "freetype2-ubuntu fontconfig-ubuntu cairo-ubuntu"
 xdg-user-dirs-update
 clean_orphan_packages
+print_title "And that's all folks!"
 finish
