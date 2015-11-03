@@ -1,5 +1,4 @@
-#!/bin/bash	
-
+#!/bin/bash
 
 if [[ -f `pwd`/variables ]]; then
   source variables
@@ -94,11 +93,12 @@ cp /etc/xdg/openbox/{menu.xml,rc.xml,autostart} /home/${username}/.config/openbo
 chown -R ${username}:users /home/${username}/.config
 #config xinitrc
 add_line  "setxkbmap latam &" "/home/${username}/.config/openbox/autostart"
-add_line  "nitroge --restore &" "/home/${username}/.config/openbox/autostart"
-add_line  "xfce4-panel" "/home/${username}/.config/openbox/autostart"
-add_line  "(sleep 3s clipit) &" "/home/${username}/.config/openbox/autostart"
-add_line  "(sleep 3s nm-applet) &" "/home/${username}/.config/openbox/autostart"
-add_line  "(sleep 3s volumeicon)" "/home/${username}/.config/openbox/autostart"
+add_line  "compton &" "/home/${username}/.config/openbox/autostart"
+add_line  "nitrogen --restore &" "/home/${username}/.config/openbox/autostart"
+add_line  "xfce4-panel &" "/home/${username}/.config/openbox/autostart"
+add_line  "(sleep 3s && clipit) &" "/home/${username}/.config/openbox/autostart"
+add_line  "(sleep 3s && nm-applet) &" "/home/${username}/.config/openbox/autostart"
+add_line  "(sleep 3s && volumeicon)" "/home/${username}/.config/openbox/autostart"
 
 touch /home/${username}/.xinitrc
 echo "exec dbus-launch openbox-session" > /home/${username}/.xinitrc
