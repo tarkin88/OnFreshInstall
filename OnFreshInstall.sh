@@ -29,10 +29,10 @@ if [[ $OPTION_XYNE == y ]]; then
 	echo  "Server = http://xyne.archlinux.ca/repos/xyne" >> /etc/pacman.conf
 	pacman -Syy powerpill
 fi
-system_update
+#system_update
 print_info "Let's start!"
 print_line
-package_install "git base-devel ccache"
+package_install "base-devel ccache"
 
 select_user
 git clone https://github.com/helmuthdu/dotfiles
@@ -68,14 +68,14 @@ system_ctl enable tlp
 system_ctl enable tlp-sleep
 system_ctl mask systemd-rfkill
 tlp start
-package_install "openbox obconf yaourt terminus-font xfce4-panel nitrogen lxappearance-obconf clipit networkmanager dnsmasq network-manager-applet"
-package_install "pcmanfm gvfs gvfs-mtp android-udev arandr mpd mpc ncmpcpp dunst libmtp xfce4-whiskermenu-plugin"
-package_install "obmenu menumaker slim obkey volumeicon chromium rxvt-unicode scrot htop gparted ranger xarchiver-gtk2"
+package_install "yaourt terminus-font lxappearance clipit networkmanager dnsmasq"
+package_install "pcmanfm gvfs gvfs-mtp android-udev arandr mpd mpc ncmpcpp dunst libmtp xfce4-whiskermenu-plugin rofi-git"
+package_install "slim scrot htop gparted ranger xarchiver-gtk2 termite"
 package_install "xdg-user-dirs wxgtk2.8 viewnior galculator firefox firefox-i18n-es-mx flashplugin gksu polkit-gnome"
 package_install "ttf-bitstream-vera ttf-dejavu youtube-dl compton"
 package_install "gst-plugins-base gst-plugins-base-libs gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav"
 package_install "gstreamer0.10 gstreamer0.10-plugins"
-package_install "vlc libbluray libquicktime libdvdread libdvdnav libdvdcss cdrdao gmrun"
+package_install "mplayer libbluray libquicktime libdvdread libdvdnav libdvdcss cdrdao feh imagemagick udevil"
 install_xorg
 
 install_video_cards
@@ -92,18 +92,11 @@ add_line "fs.inotify.max_user_watches = 524288" "/etc/sysctl.d/99-sysctl.conf"
 cp /etc/xdg/openbox/{menu.xml,rc.xml,autostart} /home/${username}/.config/openbox/
 chown -R ${username}:users /home/${username}/.config
 #config xinitrc
-add_line  "setxkbmap latam &" "/home/${username}/.config/openbox/autostart"
-add_line  "compton &" "/home/${username}/.config/openbox/autostart"
-add_line  "nitrogen --restore &" "/home/${username}/.config/openbox/autostart"
-add_line  "xfce4-panel &" "/home/${username}/.config/openbox/autostart"
-add_line  "(sleep 3s && clipit) &" "/home/${username}/.config/openbox/autostart"
-add_line  "(sleep 3s && nm-applet) &" "/home/${username}/.config/openbox/autostart"
-add_line  "(sleep 3s && volumeicon)" "/home/${username}/.config/openbox/autostart"
 
 touch /home/${username}/.xinitrc
-echo "exec dbus-launch openbox-session" > /home/${username}/.xinitrc
-aur_package_install "sublime-text-dev chromium-pepper-flash"
-aur_package_install "qbittorrent ttf-monaco oblogout-fork-git i3lock-color-git i3lock-wrapper"
+echo "exec dbus-launch" > /home/${username}/.xinitrc
+aur_package_install "sublime-text-dev google-chrome"
+aur_package_install "ttf-monaco"
 is_package_installed "fontconfig" && pacman -Rdds freetype2 fontconfig cairo
 aur_package_install "freetype2-ubuntu fontconfig-ubuntu cairo-ubuntu"
 xdg-user-dirs-update
